@@ -27,7 +27,10 @@ for job_title, group in grouped:
     else:
         salary_range = np.linspace(salaries.min(), salaries.max(), 100)
         normal_dist = (1 / (std * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((salary_range - mean) / std) ** 2)
+        plt.figure(figsize=(10, 6))
         plt.plot(salary_range, normal_dist, label=job_title)
+        plt.axvline(mean, color='r', linestyle='--', linewidth=1, label=f'Mean: {mean:.2f}')
+        plt.text(mean, 0, f'Mean: {mean:.2f}', color='red', fontsize=10, ha='center', va='bottom')
         plt.title(f'Bell Curve for Salary in USD: {job_title}')
         plt.xlabel('Salary')
         plt.ylabel('Density')
